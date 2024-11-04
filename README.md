@@ -1,37 +1,26 @@
-# CS305 Dynamic Survey Form Project
+# Dynamic Survey Form
 
 ## Overview
 
-The CS305 Dynamic Survey Form project is a course project developed for the CS305 class. This project aims to create an interactive survey form "that allows users to dynamically add and remove questions in real-time". The project showcases implementations in three different programming languages: JavaScript, C#, and Python, each demonstrating the unique features and capabilities of the respective language.
-
-## Project Structure
-
-The project is organized into three main directories, each containing the implementation in a different programming language:
-
-- **JavaScript**: Located in the `javascript/` directory, this version uses HTML and JavaScript to create a client-side dynamic survey form.
-- **C#**: The `csharp/` directory contains the C# implementation using ASP.NET Core to build a web application for the dynamic survey.
-- **Python**: The `python/` directory features the Python version, which utilizes the Flask framework to create a web-based dynamic survey form.
+The **Dynamic Survey Form** is a web-based application designed to collect user feedback through a series of questions that adapt based on previous answers. This project showcases the use of HTML, CSS, and JavaScript to create an interactive user experience.
 
 ## Features
 
-- **Dynamic Question Management**: Users can add and remove questions in real-time.
-- **Cross-Language Implementation**: Each version implements the same core functionality, allowing for comparison of language features and performance.
-- **User -Friendly Interface**: Each implementation provides a simple and intuitive user interface for survey creation.
-- **Data Handling**: Each version includes functionality to handle and display the survey data.
+- **Dynamic Question Flow**: The form adjusts the questions displayed based on the user's previous answers.
+- **Age Group Selection**: Users can select their age group, which determines if they will be asked for feedback.
+- **Feedback and Suggestions**: Users who express dissatisfaction are prompted to provide suggestions for improvement.
+- **Responsive Design**: The form is designed to be user-friendly on both desktop and mobile devices.
+
+## Technologies Used
+
+- **HTML**: For structuring the content of the form.
+- **CSS**: For styling and layout.
+- **JavaScript**: For adding dynamic behavior and interactivity.
 
 ## Getting Started
 
-### Prerequisites
+To run the Dynamic Survey Form locally, follow these steps:
 
-Before running any of the versions, ensure you have the following installed:
-
-- **JavaScript**: Node.js (for the JavaScript version)
-- **C#**: .NET SDK (version 5.0 or later)
-- **Python**: Python (version 3.6 or later) and Flask
-
-### Installation
-
-1. **Clone the repository**:
+1. **Clone the repository** to your local machine:
    ```bash
    git clone https://github.com/EIM22SE/CS305_Project.git
-   cd CS305_Project
