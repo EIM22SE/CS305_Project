@@ -2,7 +2,7 @@
 
 ## Overview
 
-The CS305 Dynamic Survey Form project is a course project developed for the CS305 class. This project aims to create an interactive survey form that allows users to dynamically add and remove questions in real-time. The project showcases implementations in three different programming languages: JavaScript, C#, and Python, each demonstrating the unique features and capabilities of the respective language.
+The CS305 Dynamic Survey Form project is a course project developed for the CS305 class. This project aims to create an interactive survey form "that allows users to dynamically add and remove questions in real-time". The project showcases implementations in three different programming languages: JavaScript, C#, and Python, each demonstrating the unique features and capabilities of the respective language.
 
 ## Project Structure
 
