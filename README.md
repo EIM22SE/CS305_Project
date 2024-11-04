@@ -1,26 +1,43 @@
-# Dynamic Survey Form
+# Hiring Survey Application
 
-## Overview
+This is a simple web application for conducting a hiring survey using Flask (Python) and ASP.NET Core (C#). The application allows users to fill out a hiring survey form and displays the submitted information upon completion.
 
-The **Dynamic Survey Form** is a web-based application designed to collect user feedback through a series of questions that adapt based on previous answers. This project showcases the use of HTML, CSS, and JavaScript to create an interactive user experience.
+## Table of Contents
+
+- [Features](#features)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
 
-- **Dynamic Question Flow**: The form adjusts the questions displayed based on the user's previous answers.
-- **Age Group Selection**: Users can select their age group, which determines if they will be asked for feedback.
-- **Feedback and Suggestions**: Users who express dissatisfaction are prompted to provide suggestions for improvement.
-- **Responsive Design**: The form is designed to be user-friendly on both desktop and mobile devices.
+- Dynamic hiring survey form
+- Input fields for personal information, experience, skills, and availability
+- Conditional input fields based on user selections (e.g., certifications)
+- Submission confirmation with displayed results
 
-## Technologies Used
+## Technologies
 
-- **HTML**: For structuring the content of the form.
-- **CSS**: For styling and layout.
-- **JavaScript**: For adding dynamic behavior and interactivity.
+### Flask (Python)
 
-## Getting Started
+- Python 3.x
+- Flask framework
+- HTML, CSS, JavaScript for front-end
 
-To run the Dynamic Survey Form locally, follow these steps:
+### ASP.NET Core (C#)
 
-1. **Clone the repository** to your local machine:
+- .NET 6 or later
+- ASP.NET Core MVC
+- HTML, CSS, JavaScript for front-end
+
+## Installation
+
+### Flask (Python)
+
+1. Clone the repository:
+
    ```bash
-   git clone https://github.com/EIM22SE/CS305_Project.git
+   git clone <repository-url>
+   cd hiring-survey-flask
