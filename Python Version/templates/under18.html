@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under 18 Survey</title>
+</head>
+<body>
+    <h1>Survey for Under 18</h1>
+    <form action="/under18" method="POST">
+        <label for="school">Are you currently in school?</label>
+                <select id="school" name="school" required>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <br><br>
+
+        <label for="hobbies">What hobbies do you enjoy?</label>
+        <input type="text" id="hobbies" name="hobbies" required>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

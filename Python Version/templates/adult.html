@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adult Survey</title>
+</head>
+<body>
+    <h1>Survey for Ages 18-35</h1>
+    <form action="/adult" method="POST">
+        <label for="employment">Are you currently employed?</label>
+        <select id="employment" name="employment" required>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <br><br>
+
+        <label for="hobbies">What hobbies do you enjoy?</label>
+        <select id="hobbies" name="hobbies" required>
+            <option value="traveling">Traveling</option>
+            <option value="reading">Reading</option>
+            <option value="fitness">Fitness</option>
+        </select>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
