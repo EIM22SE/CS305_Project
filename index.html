@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dynamic Survey Form</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        <h1>Dynamic Survey Form</h1>
+
+        <form id="surveyForm">
+            <label for="age">What is your age group?</label>
+            <select id="age" name="age" onchange="showQuestions()">
+                <option value="">Select...</option>
+                <option value="under18">Under 18</option>
+                <option value="18to35">18-35</option>
+                <option value="over35">Over 35</option>
+            </select>
+
+            <div id="under18Questions" class="hidden">
+                <h3>Questions for Under 18</h3>
+                <label for="school">Are you currently in school?</label>
+                <select id="school" name="school" onchange="showSchoolQuestions()">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+                <div id="schoolQuestions" class="hidden">
+                    <label for="favoriteSubject">What is your favorite subject?</label>
+                    <input type="text" id="favoriteSubject" name="favoriteSubject" />
+                </div>
+
+                <label for="hobbiesUnder18">What are your hobbies?</label>
+                <select id="hobbiesUnder18" name="hobbiesUnder18" onchange="showHobbyQuestions()">
+                    <option value="">Select...</option>
+                    <option value="sports">Sports</option>
+                    <option value="arts">Arts</option>
+                    <option value="gaming">Gaming</option>
+                </select>
+
+                <div id="sportsQuestions" class="hidden">
+                    <label for="favoriteSport">What is your favorite sport?</label>
+                    <input type="text" id="favoriteSport" name="favoriteSport" />
+                </div>
+
+                <div id="artsQuestions" class="hidden">
+                    <label for="favoriteArt">What type of art do you like?</label>
+                    <input type="text" id="favoriteArt" name="favoriteArt" />
+                </div>
+
+                <div id="gamingQuestions" class="hidden">
+                    <label for="favoriteGame">What is your favorite game?</label>
+                    <input type="text" id="favoriteGame" name="favoriteGame" />
+                </div>
+            </div>
+
+            <div id="adultQuestions" class="hidden">
+                <h3>Questions for Adults</h3>
+                <label for="employment">Are you currently employed?</label>
+                <select id="employment" name="employment" onchange="showEmploymentQuestions()">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+                <div id="jobQuestions" class="hidden">
+                    <label for="jobType">What type of job do you have?</label>
+                    <input type="text" id="jobType" name="jobType" />
+
+                    <label for="jobSatisfaction">How satisfied are you with your job?</label>
+                    <select id="jobSatisfaction" name="jobSatisfaction">
+                        <option value="verySatisfied">Very Satisfied</option>
+                        <option value="satisfied">Satisfied</option>
+                        <option value="neutral">Neutral</option>
+                        <option value="dissatisfied">Dissatisfied</option>
+                        <option value="veryDissatisfied">Very Dissatisfied</option>
+                    </select>
+                </div>
+
+                <label for="hobbiesAdult">What are your hobbies?</label>
+                <select id="hobbiesAdult" name="hobbiesAdult" onchange="showAdultHobbyQuestions()">
+                    <option value="">Select...</option>
+                    <option value="traveling">Traveling</option>
+                    <option value="reading">Reading</option>
+                    <option value="fitness">Fitness</option>
+                </select>
+
+                <div id="travelingQuestions" class="hidden">
+                    <label for="favoriteDestination">What is your favorite travel destination?</label>
+                    <input type="text" id="favoriteDestination" name="favoriteDestination" />
+                </div>
+
+                <div id="readingQuestions" class="hidden">
+                    <label for="favoriteBook">What is your favorite book?</label>
+                    <input type="text" id="favoriteBook" name="favoriteBook" />
+                </div>
+
+                <div id="fitnessQuestions" class="hidden">
+                    <label for="fitnessActivity">What type of fitness activities do you enjoy?</label>
+                    <input type="text" id="fitnessActivity" name="fitnessActivity" />
+                </div>
+            </div>
+
+            <div id="over35Questions" class="hidden">
+                <h3>Questions for Over 35</h3>
+                <label for="maritalStatus">What is your marital status?</label>
+                <select id="maritalStatus" name="maritalStatus" onchange="showMaritalQuestions()">
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="divorced">Divorced</option>
+                </select>
+
+                <div id="childrenQuestions" class="hidden">
+                    <label for="children">Do you have children?</label>
+                    <select id="children" name="children">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+
+                    <div id="childrenAgeQuestions" class="hidden">
+                        <label for="childrenAge">What are the ages of your children?</label>
+                        <input type="text" id="childrenAge" name="childrenAge" placeholder="e.g., 5, 8, 12" />
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" value="Submit" />
+        </form>
+        <script src="script.js"></script>
+    </body>
+</html>
