@@ -1,12 +1,5 @@
 [
     {
-        "name": "Eshaak",
-        "email": "asd@2gamil.com",
-        "phone": "062132546",
-        "has_certification": "yes",
-        "certification_name": "dfasdf"
-    },
-    {
         "name": "njk",
         "email": "fggf@gmail.com",
         "phone": "062-123-4567",
@@ -27,8 +20,7 @@
         "certification_name": "",
         "years_of_experience": 2,
         "skills": [
-            "killing",
-            "manslaughter",
+            "laughter",
             "f"
         ]
     },
