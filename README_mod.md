@@ -67,7 +67,7 @@ This project includes implementations in the following programming languages:
    ```bash
    dotnet run
 
-### JS Version
+### JavaScript Version
 
 1. Clone the repository:
    ```bash
@@ -107,6 +107,7 @@ When prompted, the interaction may look like this:
   Enter the name of your certification: Certified Python Developer
   How many years of experience do you have in your field? 5
   List your skills (comma-separated): Python, Java, SQL
+
 
 ### Searching for Responses
 
