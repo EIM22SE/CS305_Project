@@ -1,0 +1,31 @@
+[
+    {
+        "name": "hello mate",
+        "email": "hell@mate.cos",
+        "phone": "+1234567890",
+        "hasCertification": true,
+        "certifications": [
+            "asd",
+            "zxc",
+            "qwe"
+        ],
+        "yearsOfExperience": 3,
+        "skills": [
+            "qaz",
+            "wsx",
+            "edc"
+        ]
+    },
+    {
+        "name": "tame llee",
+        "email": "asd@ff.co",
+        "phone": "+12",
+        "hasCertification": false,
+        "certifications": [],
+        "yearsOfExperience": 0,
+        "skills": [
+            "uj",
+            "f"
+        ]
+    }
+]
