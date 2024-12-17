@@ -79,14 +79,14 @@ This project includes implementations in the following programming languages:
 
 ## Overview
 
-1.Upon running the application, you will see a menu with the following options:
+1. Upon running the application, you will see a menu with the following options:
   Fill out the survey
   Search responses
   Exit
 
-2.Choose an option by entering the corresponding number.
+2. Choose an option by entering the corresponding number.
 
-3.Follow the prompts to fill out the survey or search for candidates.
+3. Follow the prompts to fill out the survey or search for candidates.
 
 ## Example Interaction
 
