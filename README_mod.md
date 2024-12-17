@@ -98,21 +98,20 @@ This project includes implementations in the following programming languages:
 
 When prompted, the interaction may look like this:
 
-  ```bash
-  === Hiring Survey ===
-  Enter your name: John Doe
-  Enter your email: john.doe@example.com
-  Enter your phone number (format: xxx-xxx-xxxx): 123-456-7890
-  Do you have any certifications? (yes/no): yes
-  Enter the name of your certification: Certified Python Developer
-  How many years of experience do you have in your field? 5
-  List your skills (comma-separated): Python, Java, SQL
-
+   ```bash
+   === Hiring Survey ===
+   Enter your name: John Doe
+   Enter your email: john.doe@example.com
+   Enter your phone number (format: xxx-xxx-xxxx): 123-456-7890
+   Do you have any certifications? (yes/no): yes
+   Enter the name of your certification: Certified Python Developer
+   How many years of experience do you have in your field? 5
+   List your skills (comma-separated): Python, Java, SQL
 
 ### Searching for Responses
 
 When searching for candidates, the interaction may look like this:
 
-  ```bash
-  Enter a name or skill to search for: Python
-  Found candidate with skill 'python': John Doe
+   ```bash
+   Enter a name or skill to search for: Python
+   Found candidate with skill 'python': John Doe
