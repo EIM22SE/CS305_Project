@@ -1,0 +1,43 @@
+[
+    {
+        "name": "John Doe",
+        "email": "john@doe.com",
+        "phone": "+1234567890",
+        "has_certification": true,
+        "certifications": [
+            "cert1",
+            "cert2",
+            "cert3"
+        ],
+        "years_of_experience": 3,
+        "skills": [
+            "sk1",
+            "sk2",
+            "sk3"
+        ]
+    },
+    {
+        "name": "Not John Doe",
+        "email": "not@john.doe",
+        "phone": "+1230789456",
+        "has_certification": false,
+        "certifications": [],
+        "years_of_experience": 0,
+        "skills": [
+            "nosk1",
+            "nosk2",
+            "nosk3"
+        ]
+    },
+    {
+        "name": "asd",
+        "email": "as@f.c",
+        "phone": "+213",
+        "has_certification": false,
+        "certifications": [],
+        "years_of_experience": 0,
+        "skills": [
+            "m"
+        ]
+    }
+]
