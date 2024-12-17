@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "asd asd",
+    "Email": "asd@asd.com",
+    "Phone": "+123",
+    "HasCertification": true,
+    "Certifications": [
+      "asd",
+      "zcx",
+      "qwe"
+    ],
+    "YearsOfExperience": 3,
+    "Skills": [
+      "az",
+      "sx",
+      "dc"
+    ]
+  }
+]
