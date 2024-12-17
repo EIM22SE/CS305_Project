@@ -20,7 +20,7 @@ The Hiring Survey System is a multi-language console-based application designed 
 
 - **Search Functionality**: Enables users to search for candidates based on name or skills.
 
-- **User -Friendly Interface**: Provides a simple command-line interface for interaction.
+- **User-Friendly Interface**: Provides a simple command-line interface for interaction.
 
 ## Versions
 
