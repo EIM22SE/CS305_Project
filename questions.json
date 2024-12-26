@@ -1,0 +1,126 @@
+[
+    {
+        "question": "Enter your name:",
+        "field": "Name",
+        "type": "string"
+    },
+    {
+        "question": "Enter your email:",
+        "field": "Email",
+        "type": "email"
+    },
+    {
+        "question": "Enter your phone number (e.g., +1234567890):",
+        "field": "Phone",
+        "type": "phone"
+    },
+    {
+        "question": "What position are you applying for?",
+        "field": "Position",
+        "type": "string"
+    },
+    {
+        "question": "Do you have any certifications? (yes/no):",
+        "field": "HasCertification",
+        "type": "boolean"
+    },
+    {
+        "question": "Enter your certifications (comma-separated):",
+        "field": "Certifications",
+        "type": "list",
+        "condition": "HasCertification == true"
+    },
+    {
+        "question": "Enter your years of experience:",
+        "field": "YearsOfExperience",
+        "type": "integer"
+    },
+    {
+        "question": "Enter your skills (comma-separated):",
+        "field": "Skills",
+        "type": "list"
+    },
+    {
+        "question": "Are you willing to relocate? (yes/no):",
+        "field": "WillingToRelocate",
+        "type": "boolean"
+    },
+    {
+        "question": "What is your desired salary range? (e.g., 50000-70000):",
+        "field": "SalaryRange",
+        "type": "string"
+    },
+    {
+        "question": "Are you available to start immediately? (yes/no):",
+        "field": "ImmediateStart",
+        "type": "boolean"
+    },
+    {
+        "question": "How many hours can you work weekly?",
+        "field": "HoursPerWeek",
+        "type": "integer"
+    },
+    {
+        "question": "Do you have experience managing teams? (yes/no):",
+        "field": "HasManagementExperience",
+        "type": "boolean"
+    },
+    {
+        "question": "How many people have you managed in the past?",
+        "field": "PeopleManaged",
+        "type": "integer",
+        "condition": "HasManagementExperience == true"
+    },
+    {
+        "question": "Have you worked remotely before? (yes/no):",
+        "field": "RemoteWorkExperience",
+        "type": "boolean"
+    },
+    {
+        "question": "Which tools or software do you frequently use for your work? (comma-separated):",
+        "field": "Tools",
+        "type": "list"
+    },
+    {
+        "question": "Do you have any criminal convictions? (yes/no):",
+        "field": "CriminalRecord",
+        "type": "boolean"
+    },
+    {
+        "question": "If you answered yes, please explain:",
+        "field": "CriminalRecordDetails",
+        "type": "string",
+        "condition": "CriminalRecord == true"
+    },
+    {
+        "question": "What is your highest level of education? (e.g., High School, Bachelor's, Master's):",
+        "field": "EducationLevel",
+        "type": "string"
+    },
+    {
+        "question": "Do you have any references we can contact? (yes/no):",
+        "field": "HasReferences",
+        "type": "boolean"
+    },
+    {
+        "question": "Please provide names and contact information for your references (comma-separated):",
+        "field": "References",
+        "type": "list",
+        "condition": "HasReferences == true"
+    },
+    {
+        "question": "What is your current employment status? (e.g., Employed, Unemployed, Student):",
+        "field": "EmploymentStatus",
+        "type": "string"
+    },
+    {
+        "question": "Why are you interested in this position?",
+        "field": "InterestReason",
+        "type": "string"
+    },
+    {
+        "question": "What are your professional goals for the next 5 years?",
+        "field": "ProfessionalGoals",
+        "type": "string"
+    }
+]

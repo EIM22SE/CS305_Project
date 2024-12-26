@@ -13,3 +13,6 @@ C:\Users\Administrator\Desktop\CS305_Project\csharp\obj\Debug\net9.0\refint\csha
 C:\Users\Administrator\Desktop\CS305_Project\csharp\obj\Debug\net9.0\csharp.pdb
 C:\Users\Administrator\Desktop\CS305_Project\csharp\obj\Debug\net9.0\csharp.genruntimeconfig.cache
 C:\Users\Administrator\Desktop\CS305_Project\csharp\obj\Debug\net9.0\ref\csharp.dll
+c:\Users\Administrator\Desktop\CS305_Project\csharp\bin\Debug\net9.0\Newtonsoft.Json.dll
+c:\Users\Administrator\Desktop\CS305_Project\csharp\obj\Debug\net9.0\csharp.csproj.AssemblyReference.cache
+c:\Users\Administrator\Desktop\CS305_Project\csharp\obj\Debug\net9.0\csharp.csproj.Up2Date
