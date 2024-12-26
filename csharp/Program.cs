@@ -20,6 +20,17 @@ public class Program
             var choice = Console.ReadLine();
         }
     }
+    static bool ValidateEmail(string email)
+        {
+            var emailRegex = new System.Text.RegularExpressions.Regex(@"^[^@]+@[^@]+\.[^@]+$");
+            return emailRegex.IsMatch(email);
+        }
+
+    static bool ValidatePhone(string phone)
+    {
+        var phoneRegex = new System.Text.RegularExpressions.Regex(@"^\+?[1-9]\d{1,14}$");
+        return phoneRegex.IsMatch(phone);
+    }
 
     class Candidate
         {
