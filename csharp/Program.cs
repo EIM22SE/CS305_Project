@@ -41,8 +41,12 @@ public class Program
 
             string response;
            
-            Console.Write(question.QuestionText + " ");
-            response = Console.ReadLine();
+            do
+            {
+                Console.Write(question.QuestionText + " ");
+                response = Console.ReadLine();
+
+            } while (!ValidateResponse(question, response));
 
         }
 
@@ -62,6 +66,18 @@ public class Program
 
         var candidateValue = property.GetValue(candidate)?.ToString();
         return candidateValue == value;
+    }
+
+    static bool ValidateResponse(Question question, string response)
+    {
+        return question.Type switch
+        {
+            "email" => ValidateEmail(response),
+            "phone" => ValidatePhone(response),
+            "integer" => int.TryParse(response, out var value) && value >= 0,
+            "boolean" => response.ToLower() == "yes" || response.ToLower() == "no",
+            _ => true
+        };
     }
 
     static bool ValidateEmail(string email)
