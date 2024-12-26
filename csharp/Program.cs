@@ -16,8 +16,27 @@ public class Program
             Console.WriteLine("2. Search responses");
             Console.WriteLine("3. Exit");
             Console.Write("Choose an option: ");
-            
+
             var choice = Console.ReadLine();
         }
     }
+
+    class Candidate
+        {
+            public string Name { get; set; }
+            public string Email { get; set; }
+            public string Phone { get; set; }
+            public bool HasCertification { get; set; }
+            public List<string> Certifications { get; set; } = new List<string>();
+            public int YearsOfExperience { get; set; }
+            public List<string> Skills { get; set; } = new List<string>();
+        }
+
+        class Question
+        {
+            public string QuestionText { get; set; }
+            public string Field { get; set; }
+            public string Type { get; set; }
+            public string Condition { get; set; }
+        }
 }
