@@ -20,11 +20,55 @@ public class Program
             var choice = Console.ReadLine();
         }
     }
-    static bool ValidateEmail(string email)
+
+    static Candidate CollectCandidateInfo()
+    {
+        if (!File.Exists(QUESTIONS_FILE))
         {
-            var emailRegex = new System.Text.RegularExpressions.Regex(@"^[^@]+@[^@]+\.[^@]+$");
-            return emailRegex.IsMatch(email);
+            Console.WriteLine($"Questions file '{QUESTIONS_FILE}' not found.");
+            return null;
         }
+
+        var questions = JsonConvert.DeserializeObject<List<Question>>(File.ReadAllText(QUESTIONS_FILE));
+        var candidate = new Candidate();
+
+        foreach (var question in questions)
+        {
+            if (question.Condition != null && !EvaluateCondition(candidate, question.Condition))
+            {
+                continue;
+            }
+
+            string response;
+           
+            Console.Write(question.QuestionText + " ");
+            response = Console.ReadLine();
+
+        }
+
+        return candidate;
+    }
+
+    static bool EvaluateCondition(Candidate candidate, string condition)
+    {
+        var parts = condition.Split("==");
+        if (parts.Length != 2) return false;
+
+        var field = parts[0].Trim();
+        var value = parts[1].Trim().Trim('\'');
+
+        var property = typeof(Candidate).GetProperty(field);
+        if (property == null) return false;
+
+        var candidateValue = property.GetValue(candidate)?.ToString();
+        return candidateValue == value;
+    }
+
+    static bool ValidateEmail(string email)
+    {
+        var emailRegex = new System.Text.RegularExpressions.Regex(@"^[^@]+@[^@]+\.[^@]+$");
+        return emailRegex.IsMatch(email);
+    }
 
     static bool ValidatePhone(string phone)
     {
