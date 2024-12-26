@@ -70,14 +70,19 @@ public class Program
 
     static bool ValidateResponse(Question question, string response)
     {
-        return question.Type switch
+        switch (question.Type)
         {
-            "email" => ValidateEmail(response),
-            "phone" => ValidatePhone(response),
-            "integer" => int.TryParse(response, out var value) && value >= 0,
-            "boolean" => response.ToLower() == "yes" || response.ToLower() == "no",
-            _ => true
-        };
+            case "email":
+                return ValidateEmail(response);
+            case "phone":
+                return ValidatePhone(response);
+            case "integer":
+                return int.TryParse(response, out var value) && value >= 0;
+            case "boolean":
+                return response.Equals("yes", StringComparison.OrdinalIgnoreCase) || response.Equals("no", StringComparison.OrdinalIgnoreCase);
+            default:
+                return true;
+        }
     }
 
     static bool ValidateEmail(string email)
