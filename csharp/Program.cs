@@ -24,6 +24,7 @@ namespace HiringSurvey
                  if (choice == "1")
                     {
                         var candidate = CollectCandidateInfo();
+                        SaveCandidateInfo(candidate);
                         Console.WriteLine("Candidate information saved successfully.");
                     }
                     else if (choice == "2")
@@ -116,6 +117,21 @@ namespace HiringSurvey
             };
 
             property.SetValue(candidate, parsedValue);
+        }
+
+        static void SaveCandidateInfo(Candidate candidate)
+        {
+            var candidates = new List<Candidate>();
+
+            if (File.Exists(DATA_FILE))
+            {
+                var jsonData = File.ReadAllText(DATA_FILE);
+                candidates = JsonConvert.DeserializeObject<List<Candidate>>(jsonData);
+            }
+
+            candidates.Add(candidate);
+            var newJsonData = JsonConvert.SerializeObject(candidates, Formatting.Indented);
+            File.WriteAllText(DATA_FILE, newJsonData);
         }
 
         static bool ValidateEmail(string email)
