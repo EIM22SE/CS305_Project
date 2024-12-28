@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace HiringSurvey
 {
@@ -53,7 +49,6 @@ namespace HiringSurvey
                     return null;
                 }
 
-                // Try reading and deserializing the questions file
                 List<Question> questions;
                 try
                 {
@@ -75,7 +70,6 @@ namespace HiringSurvey
 
                 foreach (var question in questions)
                 {
-                    // Skip question if the condition is not met
                     if (!string.IsNullOrEmpty(question.condition) && !EvaluateCondition(candidate, question.condition))
                     {
                         continue;
@@ -84,7 +78,6 @@ namespace HiringSurvey
                     string response;
                     bool validResponse;
 
-                    // Ask the question and validate response
                     do
                     {
                         Console.WriteLine($"{question.question}");
@@ -97,7 +90,6 @@ namespace HiringSurvey
                         }
                     } while (!validResponse);
 
-                    // Set the candidate field based on the response
                     SetFieldValue(candidate, question.field, response, question.type);
                 }
 
@@ -137,13 +129,14 @@ namespace HiringSurvey
                 var property = typeof(Candidate).GetProperty(field);
                 if (property == null) return;
 
-                object parsedValue = type switch
+               object parsedValue = type switch
                 {
                     "integer" => int.TryParse(value, out var intValue) ? intValue : 0,
-                    "boolean" => value.ToLower() == "yes",
-                    "list" => value.Split(',').Select(s => s.Trim()).ToList(),
+                    "boolean" => value.Equals("yes", StringComparison.OrdinalIgnoreCase),
+                    "list" => value.Split(',').Select(item => item.Trim()).ToList(),
                     _ => value
                 };
+
 
                 property.SetValue(candidate, parsedValue);
             }
