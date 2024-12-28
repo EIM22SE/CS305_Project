@@ -20,8 +20,27 @@ namespace HiringSurvey
                 Console.Write("Choose an option: ");
 
                 var choice = Console.ReadLine();
+
+                 if (choice == "1")
+                    {
+                        var candidate = CollectCandidateInfo();
+                        Console.WriteLine("Candidate information saved successfully.");
+                    }
+                    else if (choice == "2")
+                    {
+                        Console.Write("Enter name or skill to search: ");
+                        
+                    }
+                    else if (choice == "3")
+                    {
+                        Console.WriteLine("Exiting the application.");
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid choice. Please try again.");
+                    }
             }
-        }
 
         static Candidate CollectCandidateInfo()
         {
@@ -110,6 +129,8 @@ namespace HiringSurvey
             var phoneRegex = new System.Text.RegularExpressions.Regex(@"^\+?[1-9]\d{1,14}$");
             return phoneRegex.IsMatch(phone);
         }
+        
+    }
 
         class Candidate
             {
