@@ -21,7 +21,6 @@ class Candidate {
       this.Skills = [];
    }
 }
-
 class Question {
    constructor(question, field, type, condition) {
       this.question = question;
@@ -31,10 +30,61 @@ class Question {
    }
 }
 
+function survey() {
+   if (!fs.existsSync(questionFile)) {
+      console.log(`Questions file '${questionFile}' not found. Ensure the file exists in the specified path.`);
+      return;
+   }
 
+   let questions;
 
+   try {
+      const fileContent = JSON.parse(fs.readFileSync(questionFile, 'utf8'));
+      questions = JSON.parse(fileContent);
+      if (!questions || questions.length === 0) {
+         console.log("No questions found in the file. Please check the content of 'questions.json'.");
+         return;
+      }
+   } catch (error) {
+      console.log(`Error reading or deserializing the questions file: ${error.message}`);
+      return;
+   }
 
+   const candidate = new Candidate();
 
+   const askQestion = (index) => {
+      if (index >= questions.length) {
+         saveCandidateInfo(candidate);
+         console.log('All questions answered succesfully.');
+         saveCandidateInfo();
+         console.log('Candidate information saved successfully.');
+         showMenu();
+         main();
+         return;
+      }
+      const question = questions[index];
+      if (question.condition && !evaluateCondition(candidate, question.condition)) {
+         askQestion(index + 1);
+         return;
+      }
+
+      ask.question(`${question.question}: \n `, (response) => {
+         //TODO
+      });
+      
+   };
+}
+   
+   function evaluateCondition(candidate, condition) {
+      const parts = condition.split('==');
+
+      if (parts.length !== 2) { return false; }
+
+      const field = parts[0].trim();
+      const value = parts[1].trim();
+
+      return candidate[field] === value;
+   }
 
 function showMenu() {
    console.log('Menu: ');
