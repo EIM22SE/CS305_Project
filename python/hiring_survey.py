@@ -5,7 +5,28 @@ import re
 data_file = "candidates.json"
 questions_file = "../questions.json"
 
-###
+def main():
+    while True:
+        print("\nMenu:")
+        print("1. Fill out the survey")
+        print("2. Search responses")
+        print("3. Exit")
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            candidate = collect_candidate_info()
+            if candidate:
+                save_candidate_info(candidate)
+                print("Candidate information saved successfully.")
+        elif choice == "2":
+            query = input("Enter name or skill to search: ")
+            search_candidates(query)
+        elif choice == "3":
+            print("Exiting the application.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
 def collect_candidate_info():
     if not os.path.exists(questions_file):
         print(f"Questions file '{questions_file}' not found. Ensure the file exists.")
@@ -109,3 +130,5 @@ def validate_phone(phone):
     phone_regex = re.compile(r"^\+?[1-9]\d{1,14}$")
     return bool(phone_regex.match(phone))
 
+if __name__ == "__main__":
+    main()
