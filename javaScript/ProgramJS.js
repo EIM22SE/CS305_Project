@@ -57,8 +57,6 @@ function searchCandidates() {
         } else {
             console.log("No candidates found matching your query.");
         }
-
-        showMenu();
         main();
     });
 }
@@ -92,7 +90,7 @@ function survey() {
          console.log('All questions answered succesfully.');
          saveCandidateInfo(candidate);
          console.log('Candidate information saved successfully.');
-         showMenu();
+         
          main();
          return;
       }
@@ -180,7 +178,7 @@ function evaluateCondition(candidate, condition) {
 }
 
 function showMenu() {
-   console.log('Menu: ');
+   console.log('\n\n Menu: ');
    console.log('1. Add Candidate. ');
    console.log('2. Search Candidate. ');
    console.log('3. Exit. ');
