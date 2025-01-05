@@ -38,3 +38,13 @@ def collect_candidate_info():
 
     print("\nAll questions answered successfully.")
     return candidate
+
+def evaluate_condition(candidate, condition):
+    try:
+        ###################################################################################
+        condition = condition.replace("== true", "== True").replace("== false", "== False")
+        return eval(condition, {}, candidate)
+    except Exception as e:
+        print(f"Error evaluating condition '{condition}': {e}")
+        return False
+
