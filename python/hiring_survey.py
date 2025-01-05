@@ -82,3 +82,30 @@ def save_candidate_info(candidate):
     with open(data_file, 'w') as f:
         json.dump(candidates, f, indent=4)
 
+def search_candidates(query):
+    if not os.path.exists(data_file):
+        print("No candidates found.")
+        return
+
+    with open(data_file, 'r') as f:
+        candidates = json.load(f)
+
+    results = [candidate for candidate in candidates \
+               if query.lower() in candidate.get("Name", "").lower() or \
+                  any(query.lower() in skill.lower() for skill in candidate.get("Skills", []))]
+
+    if results:
+        print("\nSearch Results:")
+        for candidate in results:
+            print(json.dumps(candidate, indent=4))
+    else:
+        print("No candidates found matching your query.")
+
+def validate_email(email):
+    email_regex = re.compile(r"^[^@]+@[^@]+\.[^@]+$")
+    return bool(email_regex.match(email))
+
+def validate_phone(phone):
+    phone_regex = re.compile(r"^\+?[1-9]\d{1,14}$")
+    return bool(phone_regex.match(phone))
+
