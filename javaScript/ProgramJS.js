@@ -1,14 +1,15 @@
 const fs = require('fs');
-const { stdin } = require('node:process');
 const readline = require('node:readline');
+const path = require('path');
+
 
 const ask = readline.createInterface({
    input: process.stdin,
    output: process.stdout,
 });
 
-const dataFile = 'candidates.json';
-const questionFile = 'questions.json';
+const dataFile = path.join(__dirname, '..', 'candidates.json');
+const questionFile = path.join(__dirname, '..', 'questions.json');
 
 class Candidate {
    constructor() {
@@ -30,6 +31,10 @@ class Question {
    }
 }
 
+function searchCandidates() { 
+   //todo
+}
+
 function survey() {
    if (!fs.existsSync(questionFile)) {
       console.log(`Questions file '${questionFile}' not found. Ensure the file exists in the specified path.`);
@@ -39,8 +44,9 @@ function survey() {
    let questions;
 
    try {
-      const fileContent = JSON.parse(fs.readFileSync(questionFile, 'utf8'));
+      const fileContent = fs.readFileSync(questionFile, 'utf-8');
       questions = JSON.parse(fileContent);
+
       if (!questions || questions.length === 0) {
          console.log("No questions found in the file. Please check the content of 'questions.json'.");
          return;
@@ -52,7 +58,7 @@ function survey() {
 
    const candidate = new Candidate();
 
-   const askQestion = (index) => {
+   const askQuestion = (index) => {
       if (index >= questions.length) {
          console.log('All questions answered succesfully.');
          saveCandidateInfo(candidate);
@@ -63,28 +69,28 @@ function survey() {
       }
       const question = questions[index];
       if (question.condition && !evaluateCondition(candidate, question.condition)) {
-         askQestion(index + 1);
+         askQuestion(index + 1);
          return;
       }
 
       ask.question(`${question.question}: \n `, (response) => {
          if(validateResponse(question, response)) {
             setFieldValue(candidate, question.field, response, question.type);
-            askQestion(index + 1);
+            askQuestion(index + 1);
          } else {
             console.log(`Invalid response. Please provide a valid answer for the question type '${question.type}'.`);
-            askQestion(index);
+            askQuestion(index);
          }
       });
-      
    };
+   askQuestion(0);
 } 
 
 function saveCandidateInfo(candidate) { 
    let candidates = [];
    if(fs.existsSync(dataFile)) { 
       const jsonCandidates = fs.readFileSync(dataFile, 'utf8');
-      candidates = JSON.parse(fileContent);
+      candidates = JSON.parse(jsonCandidates);
    }
 
    candidates.push(candidate);
@@ -93,24 +99,56 @@ function saveCandidateInfo(candidate) {
 }
 
 function validateResponse(question, response) { 
-   //todo
+   switch (question.type) { 
+      case 'email':
+         return validateEmail(response);
+      case 'phone':
+         return validatePhone(response);
+      case 'integer':
+         return !isNaN(parseInt(response) && parseInt(response) >= 0);
+      case 'boolean':
+         return ['yes', 'no'].includes(response.toLowerCase());
+      default:
+         return true;
+   }
 }
 
 function setFieldValue(candidate, field, value, type) { 
-   //todo
+   switch (type) {
+      case 'integer':
+         candidate[field] = parseInt(value);
+         break;
+      case 'boolean': 
+         candidate[field] = value.toLowerCase() === 'yes';
+         break;
+      case 'list': 
+         candidate[field] = value.split(',').map((item) => item.trim());
+         break
+      default:
+         candidate[field] = value;
+         break;
+   }
 }
 
+function validateEmail(email) { 
+   const emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
+   return emailRegex.test(email);
+}
+function validatePhone(phone) {
+   const phoneRegex = /^\+?[1-9]\d{1,14}$/;
+   return phoneRegex.test(phone);
+}
    
-   function evaluateCondition(candidate, condition) {
+function evaluateCondition(candidate, condition) {
       const parts = condition.split('==');
 
       if (parts.length !== 2) { return false; }
 
       const field = parts[0].trim();
-      const value = parts[1].trim();
+    const value = parts[1].trim().replace(/'/g, '');
 
       return candidate[field] === value;
-   }
+}
 
 function showMenu() {
    console.log('Menu: ');
@@ -120,7 +158,7 @@ function showMenu() {
 }
 
 const menuOptions = {
-   '1': () => { saveCandidateInfo(); },
+   '1': () => { survey(); },
    '2': () => { searchCandidates(); },
    '3': () => {
       console.log('Exiting the application.');
@@ -130,7 +168,8 @@ const menuOptions = {
 };
 
 function main() {
-   ask.question('Enter your choice: ', (choice) => { 
+   showMenu();
+   ask.question('Chose an option: ', (choice) => { 
       const action = menuOptions[choice];
       if (action) {
          action();
@@ -141,6 +180,8 @@ function main() {
    });
 }
 
+console.log("Current directory: ", __dirname);
+console.log("Looking for questions file at:", questionFile);
 
 
 main();
