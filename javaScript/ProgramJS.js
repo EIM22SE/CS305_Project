@@ -31,9 +31,38 @@ class Question {
    }
 }
 
-function searchCandidates() { 
-   //todo
+function searchCandidates() {
+    if (!fs.existsSync(dataFile)) {
+        console.log("No candidates found.");
+        return;
+    }
+
+    ask.question("Enter name or skill to search: ", (query) => {
+        const jsonData = fs.readFileSync(dataFile, 'utf-8');
+        const candidates = JSON.parse(jsonData);
+
+        const results = candidates.filter(c =>
+            c.Name.toLowerCase().includes(query.toLowerCase()) ||
+            c.Skills.some(skill => skill.toLowerCase().includes(query.toLowerCase()))
+        );
+
+        if (results.length > 0) {
+            console.log("\nSearch Results:");
+            results.forEach(candidate => {
+                console.log(`Name: ${candidate.Name}, Email: ${candidate.Email}, Phone: ${candidate.Phone}, ` +
+                    `Experience: ${candidate.YearsOfExperience} years, Skills: ${candidate.Skills.join(', ')}, ` +
+                    `Has Certifications: ${candidate.HasCertification ? 'Yes' : 'No'}, ` +
+                    `Certifications: ${candidate.Certifications.length > 0 ? candidate.Certifications.join(', ') : 'None'}`);
+            });
+        } else {
+            console.log("No candidates found matching your query.");
+        }
+
+        showMenu();
+        main();
+    });
 }
+
 
 function survey() {
    if (!fs.existsSync(questionFile)) {
