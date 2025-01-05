@@ -100,16 +100,39 @@ namespace HiringSurvey
             static bool EvaluateCondition(Candidate candidate, string condition)
             {
                 var parts = condition.Split("==");
-                if (parts.Length != 2) return false;
+                if (parts.Length != 2)
+                {
+                    return false;
+                }
 
                 var field = parts[0].Trim();
-                var value = parts[1].Trim().Trim('\'');
+                var expectedValue = parts[1].Trim().Trim('\'');
 
                 var property = typeof(Candidate).GetProperty(field);
-                if (property == null) return false;
+                if (property == null)
+                {
+                    return false;
+                }
 
-                var candidateValue = property.GetValue(candidate)?.ToString();
-                return candidateValue == value;
+                var actualValue = property.GetValue(candidate);
+
+                if (property.PropertyType == typeof(bool))
+                {
+                    if (bool.TryParse(expectedValue, out var expectedBoolValue))
+                    {
+                        return actualValue is bool actualBoolValue && actualBoolValue == expectedBoolValue;
+                    }
+                }
+
+                if (property.PropertyType == typeof(int))
+                {
+                    if (int.TryParse(expectedValue, out var expectedIntValue))
+                    {
+                        return actualValue is int actualIntValue && actualIntValue == expectedIntValue;
+                    }
+                }
+
+                return actualValue?.ToString() == expectedValue;
             }
 
             static bool ValidateResponse(Question question, string response)
@@ -124,12 +147,12 @@ namespace HiringSurvey
                 };
             }
 
-            static void SetFieldValue(Candidate candidate, string field, string value, string type)
+           static void SetFieldValue(Candidate candidate, string field, string value, string type)
             {
                 var property = typeof(Candidate).GetProperty(field);
                 if (property == null) return;
 
-               object parsedValue = type switch
+                object parsedValue = type switch
                 {
                     "integer" => int.TryParse(value, out var intValue) ? intValue : 0,
                     "boolean" => value.Equals("yes", StringComparison.OrdinalIgnoreCase),
@@ -137,9 +160,9 @@ namespace HiringSurvey
                     _ => value
                 };
 
-
                 property.SetValue(candidate, parsedValue);
             }
+
 
             static void SaveCandidateInfo(Candidate candidate)
             {
@@ -200,7 +223,7 @@ namespace HiringSurvey
 
         }
 
-        class Candidate
+       class Candidate
         {
             public string Name { get; set; }
             public string Email { get; set; }
@@ -209,7 +232,16 @@ namespace HiringSurvey
             public List<string> Certifications { get; set; } = new List<string>();
             public int YearsOfExperience { get; set; }
             public List<string> Skills { get; set; } = new List<string>();
+            public bool ImmediateStart { get; set; }
+            public string AvailableStart { get; set; }
+            public bool HasManagementExperience { get; set; }
+            public int PeopleManaged { get; set; }
+            public bool CriminalRecord { get; set; } // New property
+            public string CriminalRecordDetails { get; set; } // Dependent property
+            public bool HasReferences { get; set; } // New property
+            public List<string> References { get; set; } = new List<string>();
         }
+
 
         class Question
         {

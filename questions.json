@@ -56,6 +56,13 @@
         "type": "boolean"
     },
     {
+        "question":"When are you available to start?",
+        "field": "AvailableStart",
+        "type":"string",
+        "condition": "ImmediateStart == false"
+    },
+
+    {
         "question": "How many hours can you work weekly?",
         "field": "HoursPerWeek",
         "type": "integer"
