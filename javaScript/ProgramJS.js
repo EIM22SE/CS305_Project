@@ -46,7 +46,7 @@ function survey() {
          return;
       }
    } catch (error) {
-      console.log(`Error reading or deserializing the questions file: ${error.message}`);
+      console.log(`Error reading or deserializing the questions file: ${error.message}`); 
       return;
    }
 
@@ -54,9 +54,8 @@ function survey() {
 
    const askQestion = (index) => {
       if (index >= questions.length) {
-         saveCandidateInfo(candidate);
          console.log('All questions answered succesfully.');
-         saveCandidateInfo();
+         saveCandidateInfo(candidate);
          console.log('Candidate information saved successfully.');
          showMenu();
          main();
@@ -69,11 +68,38 @@ function survey() {
       }
 
       ask.question(`${question.question}: \n `, (response) => {
-         //TODO
+         if(validateResponse(question, response)) {
+            setFieldValue(candidate, question.field, response, question.type);
+            askQestion(index + 1);
+         } else {
+            console.log(`Invalid response. Please provide a valid answer for the question type '${question.type}'.`);
+            askQestion(index);
+         }
       });
       
    };
+} 
+
+function saveCandidateInfo(candidate) { 
+   let candidates = [];
+   if(fs.existsSync(dataFile)) { 
+      const jsonCandidates = fs.readFileSync(dataFile, 'utf8');
+      candidates = JSON.parse(fileContent);
+   }
+
+   candidates.push(candidate);
+   const newJsonCandidates = JSON.stringify(candidates, null, 2);
+   fs.writeFileSync(dataFile, newJsonCandidates);
 }
+
+function validateResponse(question, response) { 
+   //todo
+}
+
+function setFieldValue(candidate, field, value, type) { 
+   //todo
+}
+
    
    function evaluateCondition(candidate, condition) {
       const parts = condition.split('==');
