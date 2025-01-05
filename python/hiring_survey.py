@@ -48,3 +48,37 @@ def evaluate_condition(candidate, condition):
         print(f"Error evaluating condition '{condition}': {e}")
         return False
 
+def validate_response(question, response):
+    if question["type"] == "email":
+        return validate_email(response)
+    elif question["type"] == "phone":
+        return validate_phone(response)
+    elif question["type"] == "integer":
+        return response.isdigit() and int(response) >= 0
+    elif question["type"] == "boolean":
+        return response.lower() in ["yes", "no"]
+    else:
+        return True
+
+def set_field_value(candidate, field, value, field_type):
+    if field_type == "integer":
+        candidate[field] = int(value)
+    elif field_type == "boolean":
+        candidate[field] = value.lower() == "yes"
+    elif field_type == "list":
+        candidate[field] = [item.strip() for item in value.split(",")]
+    else:
+        candidate[field] = value
+
+def save_candidate_info(candidate):
+    candidates = []
+
+    if os.path.exists(data_file):
+        with open(data_file, 'r') as f:
+            candidates = json.load(f)
+
+    candidates.append(candidate)
+
+    with open(data_file, 'w') as f:
+        json.dump(candidates, f, indent=4)
+
