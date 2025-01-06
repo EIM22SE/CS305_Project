@@ -232,8 +232,5 @@ function main() {
    });
 }
 
-console.log("Current directory: ", __dirname);
-console.log("Looking for questions file at:", questionFile);
-
 
 main();
