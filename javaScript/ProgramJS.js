@@ -20,6 +20,14 @@ class Candidate {
       this.Certifications = [];
       this.YearsOfExperience = 0;
       this.Skills = [];
+      this.ImmediateStart = false;
+      this.ImmediateAvailable = '';
+      this.HasManagerialExperience = false;
+      this.PeopleManaged = 0;
+      this.CriminalRecord = false;
+      this.CriminalRecordDetails = '';
+      this.HasReferences = false;
+      this.References = [];
    }
 }
 class Question {
@@ -49,11 +57,12 @@ function searchCandidates() {
         if (results.length > 0) {
             console.log("\nSearch Results:");
             results.forEach(candidate => {
-                console.log(`Name: ${candidate.Name}, Email: ${candidate.Email}, Phone: ${candidate.Phone}, ` +
+                     console.log(`Name: ${candidate.Name}, Email: ${candidate.Email}, Phone: ${candidate.Phone}, ` +
                     `Experience: ${candidate.YearsOfExperience} years, Skills: ${candidate.Skills.join(', ')}, ` +
                     `Has Certifications: ${candidate.HasCertification ? 'Yes' : 'No'}, ` +
                     `Certifications: ${candidate.Certifications.length > 0 ? candidate.Certifications.join(', ') : 'None'}`);
-            });
+               });      
+
         } else {
             console.log("No candidates found matching your query.");
         }
@@ -140,20 +149,19 @@ function validateResponse(question, response) {
    }
 }
 
-function setFieldValue(candidate, field, value, type) { 
+function setFieldValue(candidate, field, value, type) {
    switch (type) {
       case 'integer':
          candidate[field] = parseInt(value);
          break;
-      case 'boolean': 
-         candidate[field] = value.toLowerCase() === 'yes';
+      case 'boolean':
+         candidate[field] = value.toLowerCase() === 'yes'; // "yes" -> true, "no" -> false
          break;
-      case 'list': 
+      case 'list':
          candidate[field] = value.split(',').map((item) => item.trim());
-         break
+         break;
       default:
          candidate[field] = value;
-         break;
    }
 }
 
@@ -167,15 +175,32 @@ function validatePhone(phone) {
 }
    
 function evaluateCondition(candidate, condition) {
-      const parts = condition.split('==');
+   const parts = condition.split('==');
+   if (parts.length !== 2) {
+      return false;
+   }
 
-      if (parts.length !== 2) { return false; }
+   const field = parts[0].trim();
+   const expectedValue = parts[1].trim().replace(/'/g, ''); 
 
-      const field = parts[0].trim();
-    const value = parts[1].trim().replace(/'/g, '');
+   if (!(field in candidate)) {
+      console.log(`Field '${field}' not found in Candidate object.`);
+      return false;
+   }
 
-      return candidate[field] === value;
+   const actualValue = candidate[field];
+
+   if (typeof actualValue === 'boolean') {
+      return actualValue === (expectedValue.toLowerCase() === 'true'); 
+   }
+
+   if (typeof actualValue === 'number') {
+      return actualValue === parseInt(expectedValue, 10);
+   }
+
+   return actualValue.toString() === expectedValue;
 }
+
 
 function showMenu() {
    console.log('\n\n Menu: ');
