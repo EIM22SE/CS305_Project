@@ -236,9 +236,9 @@ namespace HiringSurvey
             public string AvailableStart { get; set; }
             public bool HasManagementExperience { get; set; }
             public int PeopleManaged { get; set; }
-            public bool CriminalRecord { get; set; } // New property
-            public string CriminalRecordDetails { get; set; } // Dependent property
-            public bool HasReferences { get; set; } // New property
+            public bool CriminalRecord { get; set; }
+            public string CriminalRecordDetails { get; set; }
+            public bool HasReferences { get; set; }
             public List<string> References { get; set; } = new List<string>();
         }
 
